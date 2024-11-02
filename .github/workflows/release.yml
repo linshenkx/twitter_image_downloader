@@ -1,0 +1,35 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get tag message
+        id: tag
+        run: |
+          TAG_MESSAGE=$(git tag -l --format='%(contents)' ${{ github.ref_name }})
+          echo "message<<EOF" >> $GITHUB_OUTPUT
+          echo "$TAG_MESSAGE" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create release folder
+        run: |
+          mkdir twitter_image_downloader
+          cp -r src/* twitter_image_downloader/
+          zip -r twitter_image_downloader.zip twitter_image_downloader/
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: twitter_image_downloader.zip
+          name: Twitter Image Downloader ${{ github.ref_name }}
+          body: ${{ steps.tag.outputs.message }}

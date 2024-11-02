@@ -1,0 +1,10 @@
+{
+    "extension_name": {
+        "message": "推特图片下载器",
+        "description": "扩展名称"
+    },
+    "extension_description": {
+        "message": "为推特和 X 图片添加下载按钮，支持自定义路径/文件名。",
+        "description": "扩展描述"
+    }
+}

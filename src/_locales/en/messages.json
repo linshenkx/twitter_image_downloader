@@ -1,0 +1,10 @@
+{
+    "extension_name": {
+        "message": "Twitter & X Image Downloader",
+        "description": "Extension name"
+    },
+    "extension_description": {
+        "message": "Adds a download button for Twitter & X images, allowing custom paths/filenames.",
+        "description": "Extension description"
+    }
+}
